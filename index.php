@@ -4,7 +4,7 @@ $currentPage = "home";
 $heroSlides = [
     [
         'image' => 'images/01.png',
-        'heading' => 'Cleaner Kitchen, Healthier food.',
+        'heading' => 'Cleaner Kitchen, Healtheir food.',
     ],
     [
         'image' => 'images/02.png',
@@ -23,82 +23,75 @@ include 'includes/header.php';
 ?>
 
 <!-- Hero Section -->
-<section id="home-hero-slider" class="relative overflow-hidden bg-slate-950 text-white">
-    <div class="absolute inset-0">
-        <?php foreach ($heroSlides as $index => $slide): ?>
+<section id="home-hero-slider" class="relative min-h-[72vh] overflow-hidden bg-white sm:min-h-[78vh] lg:min-h-[82vh]">
+    <?php foreach ($heroSlides as $index => $slide): ?>
+        <div
+            class="absolute inset-0 transition-opacity duration-1000 ease-out <?php echo ($index === 0) ? 'opacity-100' : 'opacity-0'; ?>"
+            data-slide="<?php echo $index; ?>"
+            aria-hidden="<?php echo ($index === 0) ? 'false' : 'true'; ?>"
+        >
             <div
-                class="absolute inset-0 transition-opacity duration-1000 ease-out <?php echo ($index === 0) ? 'opacity-100' : 'opacity-0'; ?>"
-                data-slide="<?php echo $index; ?>"
-                aria-hidden="<?php echo ($index === 0) ? 'false' : 'true'; ?>"
-            >
-                <img
-                    src="<?php echo htmlspecialchars($slide['image']); ?>"
-                    alt="<?php echo htmlspecialchars($slide['heading']); ?>"
-                    class="h-full w-full object-cover"
-                    loading="<?php echo ($index === 0) ? 'eager' : 'lazy'; ?>"
-                    fetchpriority="<?php echo ($index === 0) ? 'high' : 'low'; ?>"
-                >
-                <div class="absolute inset-0 bg-slate-950/55"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/65 to-slate-950/20"></div>
-                <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-950/80 to-transparent"></div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+                class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style="background-image: url('<?php echo htmlspecialchars($slide['image'], ENT_QUOTES); ?>');"
+                role="img"
+                aria-label="<?php echo htmlspecialchars($slide['heading']); ?>"
+            ></div>
 
-    <div class="relative z-10">
-        <div class="container mx-auto px-4">
-            <div class="flex min-h-[70vh] items-center py-20 md:py-28">
-                <div class="max-w-3xl">
-                    <span class="mb-6 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.28em] text-blue-100 backdrop-blur-sm">
-                        Rainbow Detergents by Ceylon Trading
-                    </span>
-
-                    <div class="relative min-h-64 md:min-h-72">
-                        <?php foreach ($heroSlides as $index => $slide): ?>
-                            <div
-                                class="absolute inset-0 flex flex-col justify-center transition-all duration-700 ease-out <?php echo ($index === 0) ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'; ?>"
-                                data-slide-copy="<?php echo $index; ?>"
-                                aria-hidden="<?php echo ($index === 0) ? 'false' : 'true'; ?>"
-                            >
-                                <h1 class="max-w-2xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-                                    <?php echo htmlspecialchars($slide['heading']); ?>
-                                </h1>
-                                <p class="mt-6 max-w-2xl text-lg text-slate-100 md:text-xl">
-                                    Premium quality detergents and cleaning chemicals backed by 40+ years of industry expertise.
-                                </p>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-
-                    <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-                        <a href="products.php" class="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 font-semibold text-blue-700 shadow-lg transition-all hover:scale-105 hover:bg-slate-100">
-                            View Products
-                        </a>
-                        <a href="contact.php" class="inline-flex items-center justify-center rounded-lg border-2 border-white/80 px-8 py-4 font-semibold text-white transition-all hover:scale-105 hover:bg-white hover:text-slate-900">
-                            Contact Us
-                        </a>
-                    </div>
-
-                    <div class="mt-10 flex items-center gap-3">
-                        <?php foreach ($heroSlides as $index => $slide): ?>
-                            <button
-                                type="button"
-                                class="h-3 w-10 rounded-full bg-white/35 transition-all duration-300 hover:bg-white/70 <?php echo ($index === 0) ? 'scale-110 bg-white' : ''; ?>"
-                                data-slide-trigger="<?php echo $index; ?>"
-                                aria-label="Show slide <?php echo $index + 1; ?>"
-                                aria-current="<?php echo ($index === 0) ? 'true' : 'false'; ?>"
-                            ></button>
-                        <?php endforeach; ?>
-                    </div>
+            <div class="relative z-10 mx-auto flex min-h-[72vh] max-w-[1600px] items-end justify-center px-4 py-6 sm:min-h-[78vh] sm:px-6 sm:py-8 lg:min-h-[82vh] lg:justify-end lg:px-10 lg:py-10 xl:px-14 xl:py-14">
+                <div class="w-full max-w-2xl rounded-[28px] border border-white/30 px-6 py-5 text-center backdrop-blur-xl sm:px-8 sm:py-7 lg:ml-auto lg:max-w-[40rem] lg:rounded-[32px] lg:px-10 lg:py-9 lg:text-left" style="background-color: rgba(255, 255, 255, 0.16); box-shadow: 0 24px 80px rgba(15, 23, 42, 0.18);">
+                    <h1 class="text-[clamp(2rem,4vw,4.5rem)] font-black leading-[0.95] tracking-[-0.04em] text-white" style="text-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);">
+                        <?php echo htmlspecialchars($slide['heading']); ?>
+                    </h1>
                 </div>
             </div>
         </div>
+    <?php endforeach; ?>
+
+    <div class="pointer-events-none absolute inset-x-0 top-1/2 z-20 -translate-y-1/2">
+        <div class="mx-auto flex max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-10 xl:px-14">
+            <button
+                type="button"
+                class="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/35 text-white transition hover:border-white/55 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/60 sm:h-11 sm:w-11"
+                style="background-color: rgba(255, 255, 255, 0.14); backdrop-filter: blur(18px);"
+                data-slide-prev
+                aria-label="Previous slide"
+            >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"></path>
+                </svg>
+            </button>
+
+            <button
+                type="button"
+                class="pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/35 text-white transition hover:border-white/55 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/60 sm:h-11 sm:w-11"
+                style="background-color: rgba(255, 255, 255, 0.14); backdrop-filter: blur(18px);"
+                data-slide-next
+                aria-label="Next slide"
+            >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"></path>
+                </svg>
+            </button>
+        </div>
     </div>
 
-    <div class="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z" fill="white"/>
-        </svg>
+    <div class="pointer-events-none absolute inset-x-0 top-5 z-20">
+        <div class="mx-auto flex max-w-[1600px] justify-center px-4 sm:px-6 lg:px-10 xl:px-14">
+            <div
+                class="pointer-events-auto inline-flex items-center gap-2 rounded-full border border-white/30 px-3 py-2 sm:px-4"
+                style="background-color: rgba(255, 255, 255, 0.14); backdrop-filter: blur(18px); box-shadow: 0 20px 45px rgba(15, 23, 42, 0.16);"
+            >
+                <?php foreach ($heroSlides as $index => $slide): ?>
+                    <button
+                        type="button"
+                        class="h-2.5 w-8 rounded-full bg-white/35 transition-all duration-300 hover:bg-white/60 sm:w-10 <?php echo ($index === 0) ? 'bg-white' : ''; ?>"
+                        data-slide-trigger="<?php echo $index; ?>"
+                        aria-label="Show slide <?php echo $index + 1; ?>"
+                        aria-current="<?php echo ($index === 0) ? 'true' : 'false'; ?>"
+                    ></button>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -401,10 +394,11 @@ include 'includes/header.php';
         }
 
         const slides = slider.querySelectorAll('[data-slide]');
-        const slideCopies = slider.querySelectorAll('[data-slide-copy]');
         const triggers = slider.querySelectorAll('[data-slide-trigger]');
+        const previousButton = slider.querySelector('[data-slide-prev]');
+        const nextButton = slider.querySelector('[data-slide-next]');
 
-        if (!slides.length || slides.length !== slideCopies.length || slides.length !== triggers.length) {
+        if (!slides.length || triggers.length !== slides.length) {
             return;
         }
 
@@ -419,15 +413,6 @@ include 'includes/header.php';
                 slide.classList.toggle('opacity-100', isActive);
                 slide.classList.toggle('opacity-0', !isActive);
                 slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-            });
-
-            slideCopies.forEach((copy, index) => {
-                const isActive = index === activeIndex;
-                copy.classList.toggle('opacity-100', isActive);
-                copy.classList.toggle('opacity-0', !isActive);
-                copy.classList.toggle('translate-y-0', isActive);
-                copy.classList.toggle('translate-y-6', !isActive);
-                copy.setAttribute('aria-hidden', isActive ? 'false' : 'true');
             });
 
             triggers.forEach((trigger, index) => {
@@ -446,12 +431,30 @@ include 'includes/header.php';
             }, 5000);
         };
 
+        const showNextSlide = () => {
+            setActiveSlide((activeIndex + 1) % slides.length);
+            startAutoplay();
+        };
+
+        const showPreviousSlide = () => {
+            setActiveSlide((activeIndex - 1 + slides.length) % slides.length);
+            startAutoplay();
+        };
+
         triggers.forEach((trigger, index) => {
             trigger.addEventListener('click', () => {
                 setActiveSlide(index);
                 startAutoplay();
             });
         });
+
+        if (previousButton) {
+            previousButton.addEventListener('click', showPreviousSlide);
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', showNextSlide);
+        }
 
         slider.addEventListener('mouseenter', () => window.clearInterval(autoplayId));
         slider.addEventListener('mouseleave', startAutoplay);

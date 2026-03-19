@@ -1,6 +1,23 @@
 <?php 
 $pageTitle = "Products - Rainbow Detergents by Ceylon Trading";
 $currentPage = "products";
+$productImageMap = [];
+$productImageDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'products';
+
+if (is_dir($productImageDirectory)) {
+    foreach (scandir($productImageDirectory) as $productImageFile) {
+        $productImagePath = $productImageDirectory . DIRECTORY_SEPARATOR . $productImageFile;
+        $productImageExtension = strtolower(pathinfo($productImagePath, PATHINFO_EXTENSION));
+
+        if (!is_file($productImagePath) || !in_array($productImageExtension, ['jpg', 'jpeg', 'png'], true)) {
+            continue;
+        }
+
+        $productName = strtolower(pathinfo($productImagePath, PATHINFO_FILENAME));
+        $productImageMap[$productName] = 'images/products/' . basename($productImagePath);
+    }
+}
+
 include 'includes/header.php'; 
 ?>
 
@@ -868,5 +885,41 @@ include 'includes/header.php';
         </div>
     </div>
 </section>
+
+<script>
+    (function() {
+        const productImageMap = <?php echo json_encode($productImageMap, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
+        const productTitles = document.querySelectorAll('section[id] h3.text-xl.font-bold');
+
+        productTitles.forEach((title) => {
+            const productName = title.textContent.trim();
+            const imagePath = productImageMap[productName.toLowerCase()];
+            const card = title.closest('.bg-white.rounded-xl.shadow-lg');
+            const cardHeader = title.closest('div[class*="bg-gradient-to-br"]');
+
+            if (!productName || !imagePath || !card || !cardHeader || card.querySelector('[data-product-image]')) {
+                return;
+            }
+
+            const imageWrapper = document.createElement('div');
+            imageWrapper.className = 'border-b border-gray-100 bg-white';
+            imageWrapper.setAttribute('data-product-image', 'true');
+
+            const imageFrame = document.createElement('div');
+            imageFrame.className = 'flex h-64 items-center justify-center px-6 py-5 sm:h-72 sm:px-8';
+
+            const image = document.createElement('img');
+            image.src = imagePath;
+            image.alt = productName;
+            image.loading = 'lazy';
+            image.decoding = 'async';
+            image.className = 'h-full w-full object-contain object-center';
+
+            imageFrame.appendChild(image);
+            imageWrapper.appendChild(imageFrame);
+            cardHeader.insertAdjacentElement('afterend', imageWrapper);
+        });
+    })();
+</script>
 
 <?php include 'includes/footer.php'; ?>
