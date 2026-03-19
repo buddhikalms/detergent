@@ -1,31 +1,100 @@
 <?php 
 $pageTitle = "Home - Rainbow Detergents by Ceylon Trading";
 $currentPage = "home";
+$heroSlides = [
+    [
+        'image' => 'images/01.png',
+        'heading' => 'Cleaner Kitchen, Healthier food.',
+    ],
+    [
+        'image' => 'images/02.png',
+        'heading' => 'Cleaner floors, confident steps',
+    ],
+    [
+        'image' => 'images/03.png',
+        'heading' => 'Clean ovens, pure bakes.',
+    ],
+    [
+        'image' => 'images/04.png',
+        'heading' => 'Spotless power under the hood.',
+    ],
+];
 include 'includes/header.php'; 
 ?>
 
 <!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-blue-600 via-teal-500 to-green-500 text-white py-20 md:py-32 overflow-hidden">
-    <div class="absolute inset-0 bg-black opacity-10"></div>
-    <div class="container mx-auto px-4 relative z-10">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Powerful Cleaning Solutions for Homes & Industries
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 text-blue-50">
-                Premium quality detergents and cleaning chemicals backed by 40+ years of industry expertise
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="products.php" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                    View Products
-                </a>
-                <a href="contact.php" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105">
-                    Contact Us
-                </a>
+<section id="home-hero-slider" class="relative overflow-hidden bg-slate-950 text-white">
+    <div class="absolute inset-0">
+        <?php foreach ($heroSlides as $index => $slide): ?>
+            <div
+                class="absolute inset-0 transition-opacity duration-1000 ease-out <?php echo ($index === 0) ? 'opacity-100' : 'opacity-0'; ?>"
+                data-slide="<?php echo $index; ?>"
+                aria-hidden="<?php echo ($index === 0) ? 'false' : 'true'; ?>"
+            >
+                <img
+                    src="<?php echo htmlspecialchars($slide['image']); ?>"
+                    alt="<?php echo htmlspecialchars($slide['heading']); ?>"
+                    class="h-full w-full object-cover"
+                    loading="<?php echo ($index === 0) ? 'eager' : 'lazy'; ?>"
+                    fetchpriority="<?php echo ($index === 0) ? 'high' : 'low'; ?>"
+                >
+                <div class="absolute inset-0 bg-slate-950/55"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/65 to-slate-950/20"></div>
+                <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-950/80 to-transparent"></div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <div class="relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="flex min-h-[70vh] items-center py-20 md:py-28">
+                <div class="max-w-3xl">
+                    <span class="mb-6 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.28em] text-blue-100 backdrop-blur-sm">
+                        Rainbow Detergents by Ceylon Trading
+                    </span>
+
+                    <div class="relative min-h-64 md:min-h-72">
+                        <?php foreach ($heroSlides as $index => $slide): ?>
+                            <div
+                                class="absolute inset-0 flex flex-col justify-center transition-all duration-700 ease-out <?php echo ($index === 0) ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'; ?>"
+                                data-slide-copy="<?php echo $index; ?>"
+                                aria-hidden="<?php echo ($index === 0) ? 'false' : 'true'; ?>"
+                            >
+                                <h1 class="max-w-2xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+                                    <?php echo htmlspecialchars($slide['heading']); ?>
+                                </h1>
+                                <p class="mt-6 max-w-2xl text-lg text-slate-100 md:text-xl">
+                                    Premium quality detergents and cleaning chemicals backed by 40+ years of industry expertise.
+                                </p>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+                        <a href="products.php" class="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 font-semibold text-blue-700 shadow-lg transition-all hover:scale-105 hover:bg-slate-100">
+                            View Products
+                        </a>
+                        <a href="contact.php" class="inline-flex items-center justify-center rounded-lg border-2 border-white/80 px-8 py-4 font-semibold text-white transition-all hover:scale-105 hover:bg-white hover:text-slate-900">
+                            Contact Us
+                        </a>
+                    </div>
+
+                    <div class="mt-10 flex items-center gap-3">
+                        <?php foreach ($heroSlides as $index => $slide): ?>
+                            <button
+                                type="button"
+                                class="h-3 w-10 rounded-full bg-white/35 transition-all duration-300 hover:bg-white/70 <?php echo ($index === 0) ? 'scale-110 bg-white' : ''; ?>"
+                                data-slide-trigger="<?php echo $index; ?>"
+                                aria-label="Show slide <?php echo $index + 1; ?>"
+                                aria-current="<?php echo ($index === 0) ? 'true' : 'false'; ?>"
+                            ></button>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Decorative wave -->
+
     <div class="absolute bottom-0 left-0 right-0">
         <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z" fill="white"/>
@@ -322,5 +391,74 @@ include 'includes/header.php';
         </div>
     </div>
 </section>
+
+<script>
+    (function() {
+        const slider = document.getElementById('home-hero-slider');
+
+        if (!slider) {
+            return;
+        }
+
+        const slides = slider.querySelectorAll('[data-slide]');
+        const slideCopies = slider.querySelectorAll('[data-slide-copy]');
+        const triggers = slider.querySelectorAll('[data-slide-trigger]');
+
+        if (!slides.length || slides.length !== slideCopies.length || slides.length !== triggers.length) {
+            return;
+        }
+
+        let activeIndex = 0;
+        let autoplayId = null;
+
+        const setActiveSlide = (nextIndex) => {
+            activeIndex = nextIndex;
+
+            slides.forEach((slide, index) => {
+                const isActive = index === activeIndex;
+                slide.classList.toggle('opacity-100', isActive);
+                slide.classList.toggle('opacity-0', !isActive);
+                slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+            });
+
+            slideCopies.forEach((copy, index) => {
+                const isActive = index === activeIndex;
+                copy.classList.toggle('opacity-100', isActive);
+                copy.classList.toggle('opacity-0', !isActive);
+                copy.classList.toggle('translate-y-0', isActive);
+                copy.classList.toggle('translate-y-6', !isActive);
+                copy.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+            });
+
+            triggers.forEach((trigger, index) => {
+                const isActive = index === activeIndex;
+                trigger.classList.toggle('bg-white', isActive);
+                trigger.classList.toggle('bg-white/35', !isActive);
+                trigger.classList.toggle('scale-110', isActive);
+                trigger.setAttribute('aria-current', isActive ? 'true' : 'false');
+            });
+        };
+
+        const startAutoplay = () => {
+            window.clearInterval(autoplayId);
+            autoplayId = window.setInterval(() => {
+                setActiveSlide((activeIndex + 1) % slides.length);
+            }, 5000);
+        };
+
+        triggers.forEach((trigger, index) => {
+            trigger.addEventListener('click', () => {
+                setActiveSlide(index);
+                startAutoplay();
+            });
+        });
+
+        slider.addEventListener('mouseenter', () => window.clearInterval(autoplayId));
+        slider.addEventListener('mouseleave', startAutoplay);
+
+        setActiveSlide(0);
+        startAutoplay();
+    })();
+</script>
 
 <?php include 'includes/footer.php'; ?>

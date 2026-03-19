@@ -84,7 +84,7 @@ include 'includes/header.php';
     <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Partnership & Expertise</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Clientship & Expertise</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Backed by industry veteran leadership and proven excellence
                 </p>
@@ -135,7 +135,7 @@ include 'includes/header.php';
 
                 <!-- Partners grid (9 items) -->
                 <div id="partners" class="mt-10">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Our Partners</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Our Clients</h3>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
                         <?php
                         $partners = [
@@ -154,8 +154,7 @@ include 'includes/header.php';
                         <div class="bg-white rounded-lg p-4 flex flex-col items-center">
                             <img src="<?php echo $p['img']; ?>" alt="<?php echo htmlspecialchars($p['name']); ?>"
                                 class="w-32 h-32 object-contain mb-3">
-                            <p class="text-center text-gray-700 font-semibold">
-                                <?php echo htmlspecialchars($p['name']); ?></p>
+
                         </div>
                         <?php endforeach; ?>
                     </div>
